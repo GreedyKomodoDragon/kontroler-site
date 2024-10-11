@@ -1,0 +1,188 @@
+---
+import {
+  convertVersionString,
+  getLanguageFromURL,
+  getVersionFromURL,
+} from "../../languages";
+import SkipToContent from "./SkipToContent.astro";
+import SidebarToggle from "./SidebarToggle";
+import LanguageSelect from "./LanguageSelect";
+import Search from "./Search";
+import VersionSelect from "./VersionSelect";
+
+type Props = {
+  currentPage: string;
+};
+
+const { currentPage } = Astro.props;
+const lang = getLanguageFromURL(currentPage);
+const version = getVersionFromURL(currentPage);
+---
+
+<header>
+  <SkipToContent />
+  <nav class="nav-wrapper" title="Top Navigation">
+    {
+      currentPage != "/" && (
+        <div class="menu-toggle">
+          <SidebarToggle client:idle />
+        </div>
+      )
+    }
+    <div class="logo">
+      <a href="/">
+        <img height="60" src="https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg" /> Kontroler
+      </a>
+    </div>
+
+    {
+      currentPage != "/" && (
+        <>
+          <LanguageSelect lang={lang} client:idle />
+          <VersionSelect version={convertVersionString(version)} client:idle />
+        </>
+      )
+    }
+    {
+      currentPage == "/" && (
+        <h3 class="docs">
+          <a class="anchor" href="/en/v050/kontroler/introduction">
+            Docs
+          </a>
+        </h3>
+      )
+    }
+    <div class="search-item">
+      <Search client:idle />
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    z-index: 11;
+    height: var(--theme-navbar-height);
+    width: 100%;
+    background-color: var(--theme-navbar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+  }
+
+  .logo {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    width: 30px;
+    font-size: 2rem;
+    flex-shrink: 0;
+    font-weight: 600;
+    line-height: 1;
+    color: hsla(var(--color-base-white), 100%, 1);
+    gap: 0.25em;
+  }
+
+  .logo a {
+    display: flex;
+    padding: 0.5em 0.25em;
+    margin: -0.5em -0.25em;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .logo a {
+    transition: color 100ms ease-out;
+    color: var(--theme-text);
+  }
+
+  .logo a:hover,
+  .logo a:focus {
+    color: var(--theme-text-accent);
+  }
+
+  .logo h1 {
+    display: none;
+    font: inherit;
+    color: inherit;
+    margin: 0;
+  }
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1em;
+    width: 100%;
+    max-width: 82em;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 50em) {
+    header {
+      position: static;
+      padding: 2rem 0rem;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .logo {
+      width: auto;
+      margin: 0;
+      z-index: 0;
+    }
+
+    .logo h1 {
+      display: initial;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+  }
+
+  /** Style Algolia */
+  :root {
+    --docsearch-primary-color: var(--theme-accent);
+    --docsearch-logo-color: var(--theme-text);
+  }
+
+  .search-item {
+    display: none;
+    position: relative;
+    z-index: 10;
+    flex-grow: 1;
+    padding-right: 0.7rem;
+    display: flex;
+    max-width: 200px;
+  }
+
+  @media (min-width: 50em) {
+    .search-item {
+      max-width: 400px;
+    }
+  }
+
+  .anchor {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .anchor:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .docs {
+    margin-top: 0.5em !important;
+  }
+</style>
+
+<style is:global>
+  .search-item > * {
+    flex-grow: 1;
+  }
+</style>

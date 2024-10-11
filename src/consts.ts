@@ -1,0 +1,43 @@
+export const SITE = {
+  title: "Kontroler",
+  description: "Kubernetes-Native DAG creation & Management tool to simplify running connected jobs in an event driven or scheduled manner",
+  defaultLanguage: "en-us",
+} as const;
+
+export const OPEN_GRAPH = {
+  image: {
+    height: "50",
+    width: "100",
+    src: "https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg",
+    alt: "Kontroler logo",
+  },
+};
+
+export const KNOWN_LANGUAGES = {
+  English: "en",
+} as const;
+export const KNOWN_LANGUAGE_CODES = Object.values(KNOWN_LANGUAGES);
+
+export const GITHUB_EDIT_URL = `https://github.com/GreedyKomodoDragon/kontroler-site/tree/main/src/content/docs`;
+
+export const COMMUNITY_INVITE_URL = ``;
+
+export type Sidebar = Record<
+  (typeof KNOWN_LANGUAGE_CODES)[number],
+  Record<string, Record<string, { text: string; link: string }[]>>
+>;
+export const SIDEBAR: Sidebar = {
+  en: {
+    v050: {
+      "Kontroler": [
+        { text: "Introduction", link: "en/v050/kontroler/introduction" },
+        { text: "API", link: "en/v050/kontroler/introduction" },
+      ],
+      "Install": [
+        { text: "Options", link: "en/v050/install/options" },
+      ],
+    },
+  },
+};
+
+export const KNOWN_VERSIONS = ["v0.5.0"];

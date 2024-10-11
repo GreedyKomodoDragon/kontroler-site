@@ -1,0 +1,245 @@
+---
+import type { MarkdownHeading } from "astro";
+import type { CollectionEntry } from "astro:content";
+import HeadCommon from "../components/HeadCommon.astro";
+import HeadSEO from "../components/HeadSEO.astro";
+import Header from "../components/Header/Header.astro";
+import ThemeToggleButton from "../components/RightSidebar/ThemeToggleButton";
+
+type Props = CollectionEntry<"docs">["data"] & {
+  headings: MarkdownHeading[];
+};
+
+const { headings, ...data } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPage = Astro.url.pathname;
+---
+
+<html dir={data.dir} lang={data.lang} class="initial">
+  <head>
+    <HeadCommon />
+    <HeadSEO {...data} canonicalUrl={canonicalURL} />
+    <title>Kontroler</title>
+    <style>
+      body {
+        width: 100%;
+        display: grid;
+        grid-template-rows: var(--theme-navbar-height) 1fr;
+        --gutter: 0.5rem;
+        --doc-padding: 2rem;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: var(--theme-navbar-bg);
+        padding: 20px;
+        padding-bottom: 50px;
+      }
+
+      .hero-text {
+        margin-bottom: 20px;
+      }
+
+      .hero-image {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: var(--theme-bg);
+      }
+
+      .subsection {
+        flex-basis: 30%;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .subsection h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .subsection svg {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        fill: #ccc;
+      }
+
+      .middle-section {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--theme-navbar-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .final-section {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--theme-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .middle-section h2 {
+        font-size: 24px;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+
+      .middle-section img {
+        max-height: 500px;
+      }
+
+      @media (min-width: 768px) {
+        /* Media query for larger screens */
+        .hero {
+          flex-direction: row;
+          justify-content: center;
+          text-align: left;
+        }
+
+        .hero-text {
+          font-size: 36px;
+          margin-right: 40px;
+          margin-bottom: 0;
+        }
+
+        .section {
+          padding: 40px;
+        }
+
+        .subsection {
+          flex-basis: 30%;
+          margin-bottom: 0;
+          text-align: center;
+        }
+
+        .subsection h2 {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        .subsection svg {
+          width: 200px;
+          height: 200px;
+        }
+
+        .middle-section {
+          padding: 40px;
+        }
+
+        .middle-section h2 {
+          font-size: 36px;
+          margin-bottom: 30px;
+        }
+
+        .middle-section svg {
+          width: 80%;
+          height: auto;
+          max-width: 600px;
+        }
+
+        .final-section h2 {
+          font-size: 36px;
+          margin-bottom: 30px;
+        }
+      }
+
+      .footer {
+        background-color: var(--theme-navbar-bg);
+        text-align: center;
+        padding: 20px;
+      }
+
+      .footer p {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .what-text {
+        font-size: 1.1em;
+        max-width: 60%;
+      }
+
+      .final-section .section {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .toggleSvg {
+        color: var(--theme-text);
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header currentPage={currentPage} />
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Kontroler</h1>
+        <p>Kubernetes-Native DAG creation & Management tool</p>
+      </div>
+      <img height="300" src="https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg" />
+    </div>
+
+    <div class="section">
+      <div class="subsection">
+        <h2>Batteries Included</h2>
+        <span class="toggleSvg">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="currentColor"
+              d="M28.716 19.205a1.5 1.5 0 0 0-.472-.116l.014-.033-4.651-2.016-.003-.001-7.342-3.183v3.797l5.651-1.057-.19.733-.738 2.855-1.748.063-2.975.107v5.18l3.084 1.337 4.651 2.016.005-.012q.165.135.363.221c1.426.609 3.557-1.111 4.758-3.842s1.019-5.439-.407-6.048zm.033 5.888c-.541 1.229-1.449 2.024-2.03 1.776s-.613-1.445-.072-2.674 1.449-2.024 2.03-1.776.613 1.445.072 2.674M10.419 2.189c-2.996 0-5.425 1.25-5.425 2.791q0 .067.006.135v5.748c-.794.696-1.553 1.754-2.109 3.036-1.154 2.662-1.004 5.305.321 5.975l-.001.003.078.034 1.84.797v7.173h.003c.088 1.482 2.453 2.671 5.354 2.671s5.267-1.189 5.354-2.671h.003V5.227h-.021q.021-.122.022-.248c0-1.542-2.429-2.791-5.425-2.791zm0 .404c1.348 0 2.441.509 2.441 1.136s-1.093 1.136-2.441 1.136-2.441-.509-2.441-1.136 1.093-1.136 2.441-1.136M7.514 19.054l-.741-.779 2.299-.803-3.675-5.443 3.661-.575 3.543 7.429-1.492.739 3.228 6.6z" />
+          </svg>
+        </span>
+        <p>
+          Kontroler provides not only the core controller but a Server & User Interface to manage and create new DAGs
+        </p>
+      </div>
+      <div class="subsection">
+        <h2>Open Source</h2>
+        <span class="toggleSvg">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 980">
+            <path 
+              fill="currentColor"
+              d="M456 1.1C352.5 8.6 256.2 47.4 176 113.9c-15 12.3-50.1 47.5-62.2 62.1C25.7 282.8-13.2 416.3 4 552.5 15.9 645.9 54.1 732.6 116.4 807c9.8 11.7 37 39.3 49.6 50.4 132.8 116.6 315.8 153.1 482.5 96.2C739 922.7 818.8 865.5 878.1 789c45.6-58.9 77.6-129.2 92.3-203 30-150.3-11.5-304.4-113-420-11.2-12.8-38.6-39.8-50.9-50.1C730.2 51.7 640 13.3 540 2.5 522.6.6 473.6-.2 456 1.1m-98 139.2c45.2 10.7 82.3 42.7 99 85.3 17.4 44.5 11.1 93.9-16.7 132.6-7.5 10.3-23.7 25.9-34.5 33.1-26.2 17.4-59.2 25.8-89.8 22.7-32.9-3.2-60.4-15.9-84.4-38.9-19.4-18.7-32-40.1-38.8-66.1-4-15.1-5-37.8-2.4-54 8.5-53.8 51.5-100.6 104.6-113.9 13.8-3.4 19.6-4 36.5-3.6 12.5.3 18.3.9 26.5 2.8m308.7 62.3c14.8 2.2 26 5.6 39.8 12.3 14 6.8 23.7 13.5 34.2 23.4 22.8 21.7 37.9 51.1 42.4 82.5 1.5 11 .6 40.2-1.6 50.2-6 27.4-17.8 49.9-36.1 69-40.2 41.9-102.7 53.6-155.1 29-40.1-18.8-68.9-57.4-76.8-102.9-2-11.2-1.9-35.6.1-48.5 3-18.7 11.5-40.7 22-56.6 28.2-42.9 80.1-66 131.1-58.4M421 446.5c19.9.3 36.6 1 43 1.9 10.1 1.4 71.1 12.4 71.7 12.9.5.5-27.4 18.6-38.2 24.8-6 3.5-23.4 12.3-38.5 19.7-59.6 29.1-65.9 32.3-77.9 39.2-24.6 14.1-44.5 30.5-56.2 46-25.8 34.3-26.2 82.7-.9 141.2 2.2 5.1 4 9.9 4 10.6s-18.8 13.7-41.7 28.9c-23 15.1-47.6 31.5-54.8 36.3-15.6 10.5-21.3 13.8-25.6 15-3.1.9-3.5.7-12.7-8.3-16.7-16.4-27.7-33.6-30.7-48.2-3.1-15.7-3.7-30.1-3-72.6l.7-41.6-4.8-.7c-6.3-.8-13.4-.8-13.4.1.2 3.6-10.6 80.3-11.3 80.3-2.1 0-15-10.3-25-20-26.2-25.2-43.8-57.1-52.1-94.1-12.7-56.9 2.8-115.8 37.7-143.4 18-14.4 40.6-22.3 74.7-26.2 22.1-2.5 148.4-3.4 255-1.8m277.9 52.4c79.9 11 143.5 41.6 170.4 82.2 6.8 10.2 18.2 33.6 23.1 47.2 4.4 12 7.6 27.4 7.6 36.1 0 20.9-9.9 41.5-31.2 64.8-7.9 8.8-33.6 32.4-34.3 31.6-.2-.2-7.7-17.7-16.5-38.8-8.9-21.2-16.5-38.8-16.9-39.2s-3.4-.4-6.6 0l-6 .7.3 10c.2 5.5 1.3 18.8 2.4 29.5s2.2 28.7 2.5 40c.9 36.5-3.5 50.7-22.1 69.8-13.3 13.8-27.3 22.9-65 42.4-13.7 7-25.5 13.3-26.2 13.9-1.4 1.2 1.9 5.2-84.1-103.4l-45-56.7 4.9-11.4c20-46.7 13.3-93-20.1-137.6-7.5-10-26.5-29.6-37.3-38.3-4.9-3.9-8.8-7.4-8.8-7.7 0-1.1 16.1-9.7 27-14.3 25.2-10.8 55.5-18.5 85-21.6 5.8-.6 11.9-1.3 13.5-1.5 1.7-.2 17.6-.3 35.5-.1 26.2.2 35.5.7 47.9 2.4m-246 60.6c39 8.2 73 43.3 80.7 83.3 1.8 9.6 1.8 25.9-.1 35.9-8.5 44.7-41.1 74.4-87.1 79.4-19.4 2-38.4-1.2-56.3-9.7-27-12.7-46.5-36.7-53.8-66-2.5-10.1-2.4-34.3.1-44.4 2.6-10.2 8.3-23.2 14.1-32.1 7.1-10.9 24.1-27.2 35-33.6 10.3-6.1 21.1-10.5 31-12.6 9.2-2 27.5-2.1 36.4-.2M474.5 775c41.3 2.8 74.6 9.9 95 20.3 21.7 11.1 36.1 35.9 42 72.2 2.3 13.7 2 20.3-1 24.7-3.6 5.3-14.3 12.9-28.5 20.2-23.2 11.9-34.2 14.6-77 19.1-13.5 1.4-27.5 3-31.2 3.5-6.5 1-7.2.8-37.5-7.6-96.1-26.6-141.9-41.3-160.5-51.7-17.6-9.9-25.3-23.3-21.3-37.3 5.2-18.2 26.9-37.3 53.4-46.8 21.7-7.8 56.3-13.9 93.6-16.5 17.3-1.2 55.5-1.2 73-.1"/>
+          </svg>
+        </span>
+        <p>
+          All Kontroler Core code will be open source and accessible via our <a href="https://github.com/GreedyKomodoDragon/Kontroler">Github</a>
+          space
+        </p>
+      </div>
+      <div class="subsection">
+        <h2>Security Focused</h2>
+        <span class="toggleSvg">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                fill="currentColor"
+                d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11z" />
+          </svg>
+        </span>
+        <p>
+          Kontroler aims to put security first, kontroler never looks at the whole cluster, only what you allow it to see
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <ThemeToggleButton client:visible />
+      <p>&copy; 2024 Kontroler. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
