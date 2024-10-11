@@ -6,9 +6,7 @@ export const SITE = {
 
 export const OPEN_GRAPH = {
   image: {
-    height: "50",
-    width: "100",
-    src: "https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg",
+    src: "https://github.com/GreedyKomodoDragon/kontroler-site/blob/main/open.png?raw=true",
     alt: "Kontroler logo",
   },
 };
