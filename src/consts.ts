@@ -33,7 +33,8 @@ export const SIDEBAR: Sidebar = {
         { text: "CRD API", link: "en/v050/kontroler/api" },
       ],
       "Install": [
-        { text: "Options", link: "en/v050/install/options" },
+        { text: "Helm", link: "en/v050/install/helm" },
+        { text: "Building Source", link: "en/v050/install/source" },
       ],
     },
   },
