@@ -29,7 +29,8 @@ export const SIDEBAR: Sidebar = {
     v050: {
       "Kontroler": [
         { text: "Introduction", link: "en/v050/kontroler/introduction" },
-        { text: "API", link: "en/v050/kontroler/introduction" },
+        { text: "Architecture", link: "en/v050/kontroler/architecture" },
+        { text: "CRD API", link: "en/v050/kontroler/api" },
       ],
       "Install": [
         { text: "Options", link: "en/v050/install/options" },
