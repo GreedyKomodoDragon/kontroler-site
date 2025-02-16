@@ -1,6 +1,7 @@
 export const SITE = {
   title: "Kontroler",
-  description: "Kubernetes-Native DAG creation & Management tool to simplify running connected jobs in an event driven or scheduled manner",
+  description:
+    "Kubernetes-Native DAG creation & Management tool to simplify running connected jobs in an event driven or scheduled manner",
   defaultLanguage: "en-us",
 } as const;
 
@@ -26,18 +27,12 @@ export type Sidebar = Record<
 >;
 export const SIDEBAR: Sidebar = {
   en: {
-    v050: {
-      "Kontroler": [
-        { text: "Introduction", link: "en/v050/kontroler/introduction" },
-        { text: "Architecture", link: "en/v050/kontroler/architecture" },
-        { text: "CRD API", link: "en/v050/kontroler/api" },
-      ],
-      "Install": [
-        { text: "Helm", link: "en/v050/install/helm" },
-        { text: "Building Source", link: "en/v050/install/source" },
+    v0110: {
+      Kontroler: [
+        { text: "Introduction", link: "en/v0110/kontroler/introduction" },
       ],
     },
   },
 };
 
-export const KNOWN_VERSIONS = ["v0.5.0"];
+export const KNOWN_VERSIONS = ["v0.11.0"];

@@ -75,9 +75,10 @@
 	--theme-code-bg: hsla(217, 19%, 27%, 1);
 	--theme-code-text: hsla(var(--color-gray-95), 1);
 	--theme-navbar-bg: rgb(245, 244, 244);
-	--theme-navbar-height: 6rem;
+	--theme-navbar-height: 4rem;
 	--theme-selection-color: hsla(var(--color-blue), 1);
 	--theme-selection-bg: hsla(var(--color-blue), var(--theme-accent-opacity));
+	--theme-icon-filter: hsla(var(--color-base-black), 1);
 }
 
 body {
@@ -116,6 +117,7 @@ body {
 	--docsearch-hit-color: var(--theme-text);
 	--docsearch-footer-shadow: inset 0 2px 10px #000;
 	--docsearch-modal-shadow: inset 0 0 8px #000;
+	--theme-icon-filter: white;
 }
 
 ::selection {

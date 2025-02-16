@@ -7,7 +7,6 @@ import {
 import SkipToContent from "./SkipToContent.astro";
 import SidebarToggle from "./SidebarToggle";
 import LanguageSelect from "./LanguageSelect";
-import Search from "./Search";
 import VersionSelect from "./VersionSelect";
 
 type Props = {
@@ -20,6 +19,8 @@ const version = getVersionFromURL(currentPage);
 ---
 
 <header>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
   <SkipToContent />
   <nav class="nav-wrapper" title="Top Navigation">
     {
@@ -31,8 +32,13 @@ const version = getVersionFromURL(currentPage);
     }
     <div class="logo">
       <a href="/">
-        <img height="60" src="https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg" /> Kontroler
+        <img height="40" src="https://github.com/GreedyKomodoDragon/Kontroler/raw/main/ui/public/logo.svg" /> Kontroler
       </a>
+    </div>
+    
+    <div class="nav-links">
+      <a href="/docs" class="nav-link">Documentation</a>
+      <a href="/examples" class="nav-link">Examples</a>
     </div>
 
     {
@@ -43,17 +49,14 @@ const version = getVersionFromURL(currentPage);
         </>
       )
     }
-    {
-      currentPage == "/" && (
-        <h3 class="docs">
-          <a class="anchor" href="/en/v050/kontroler/introduction">
-            Docs
-          </a>
-        </h3>
-      )
-    }
-    <div class="search-item">
-      <Search client:idle />
+    
+    <div class="nav-right">
+      <a class="github-button"
+        href="https://github.com/GreedyKomodoDragon/Kontroler"
+        data-icon="octicon-star"
+        data-size="large"
+        data-show-count="true"
+        aria-label="Star ntkme/github-buttons on GitHub">Star</a>
     </div>
   </nav>
 </header>
@@ -87,7 +90,7 @@ const version = getVersionFromURL(currentPage);
 
   .logo a {
     display: flex;
-    padding: 0.5em 0.25em;
+    padding: 0.5em 0.25em;s
     margin: -0.5em -0.25em;
     text-decoration: none;
     font-weight: bold;
@@ -96,18 +99,12 @@ const version = getVersionFromURL(currentPage);
   .logo a {
     transition: color 100ms ease-out;
     color: var(--theme-text);
+    font-size: 0.8em;
   }
 
   .logo a:hover,
   .logo a:focus {
     color: var(--theme-text-accent);
-  }
-
-  .logo h1 {
-    display: none;
-    font: inherit;
-    color: inherit;
-    margin: 0;
   }
 
   .nav-wrapper {
@@ -118,6 +115,32 @@ const version = getVersionFromURL(currentPage);
     width: 100%;
     max-width: 82em;
     padding: 0 1rem;
+  }
+
+  .nav-links {
+    display: none;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    color: var(--theme-text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--theme-text-accent);
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 5px;
   }
 
   @media (min-width: 50em) {
@@ -142,6 +165,14 @@ const version = getVersionFromURL(currentPage);
 
     .menu-toggle {
       display: none;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    .nav-wrapper {
+      justify-content: space-between;
     }
   }
 
@@ -177,8 +208,8 @@ const version = getVersionFromURL(currentPage);
   }
 
   .docs {
-    margin-top: 0.5em !important;
-  }
+    margin-top: 0.2em !important;
+  } 
 </style>
 
 <style is:global>
