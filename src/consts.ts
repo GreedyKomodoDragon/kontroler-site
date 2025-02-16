@@ -30,6 +30,12 @@ export const SIDEBAR: Sidebar = {
     v0110: {
       Kontroler: [
         { text: "Introduction", link: "en/v0110/kontroler/introduction" },
+        { text: "Architecture", link: "en/v0110/kontroler/architecture" },
+        { text: "Open Source", link: "en/v0110/kontroler/opensource" },
+      ],
+
+      Examples: [
+        { text: "Introduction", link: "en/v0110/kontroler/introduction" },
       ],
     },
   },

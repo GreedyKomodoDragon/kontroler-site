@@ -1,6 +1,6 @@
 ---
 title: "kontroler Documentation"
-description: "Docs intro"
+description: "Documentation Introduction"
 ---
 
 <h4>Welcome to the kontroler!</h4>
@@ -8,8 +8,6 @@ description: "Docs intro"
 Kontroler is a Kubernetes-native DAG (Directed Acyclic Graph) management and creation tool built to streamline the orchestration of complex workflows in modern cloud-native environments.
 
 Kontroler integrates seamlessly with Kubernetes, leveraging its core capabilities—such as autoscaling, high availability, and container orchestration—to provide a scalable, fault-tolerant solution for creating and managing DAGs. Whether you're orchestrating data pipelines, automating tasks, or managing multi-step workflows, Kontroler ensures reliable execution and simplifies workflow management directly within your Kubernetes ecosystem.
-
-Documentation coming soon!
 
 ## Alpha Development
 

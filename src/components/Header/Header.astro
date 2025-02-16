@@ -6,7 +6,6 @@ import {
 } from "../../languages";
 import SkipToContent from "./SkipToContent.astro";
 import SidebarToggle from "./SidebarToggle";
-import LanguageSelect from "./LanguageSelect";
 import VersionSelect from "./VersionSelect";
 
 type Props = {
@@ -37,16 +36,13 @@ const version = getVersionFromURL(currentPage);
     </div>
     
     <div class="nav-links">
-      <a href="/docs" class="nav-link">Documentation</a>
+      <a href="/en/v0110/kontroler/introduction" class="nav-link">Documentation</a>
       <a href="/examples" class="nav-link">Examples</a>
     </div>
 
     {
       currentPage != "/" && (
-        <>
-          <LanguageSelect lang={lang} client:idle />
-          <VersionSelect version={convertVersionString(version)} client:idle />
-        </>
+        <VersionSelect version={convertVersionString(version)} client:idle />
       )
     }
     
