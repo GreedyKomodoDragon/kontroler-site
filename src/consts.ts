@@ -33,9 +33,16 @@ export const SIDEBAR: Sidebar = {
         { text: "Architecture", link: "en/v0110/kontroler/architecture" },
         { text: "Open Source", link: "en/v0110/kontroler/opensource" },
       ],
-
-      Examples: [
-        { text: "Introduction", link: "en/v0110/kontroler/introduction" },
+      Deployment: [
+        { text: "Helm", link: "en/v0110/deployment/helm" },
+        { text: "Build", link: "en/v0110/deployment/build" },
+      ],
+      Concepts: [
+        { text: "Cronjobs", link: "en/v0110/concepts/cronjobs" },
+        { text: "Parameters", link: "en/v0110/concepts/parameters" },
+        { text: "PodTemplates", link: "en/v0110/concepts/podtemplates" },
+        { text: "Workspaces", link: "en/v0110/concepts/workspaces" },
+        { text: "Webhooks", link: "en/v0110/concepts/webhooks" },
       ],
     },
   },

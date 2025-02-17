@@ -3,7 +3,7 @@ title: "Licensing Strategy"
 description: "Understanding Kontroler's open source commitment and licensing approach"
 ---
 
-# Open Source Commitment
+## Open Source Commitment
 
 Kontroler is proudly open source software, licensed under the GNU General Public License v3.0 (GPL-3.0). This choice reflects our commitment to maintaining a truly open ecosystem where improvements benefit the entire community.
 
