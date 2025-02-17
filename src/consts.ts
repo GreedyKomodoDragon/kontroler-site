@@ -32,6 +32,7 @@ export const SIDEBAR: Sidebar = {
         { text: "Introduction", link: "en/v0110/kontroler/introduction" },
         { text: "Architecture", link: "en/v0110/kontroler/architecture" },
         { text: "Open Source", link: "en/v0110/kontroler/opensource" },
+        { text: "K8s APIs", link: "en/v0110/kontroler/apis" },
       ],
       Deployment: [
         { text: "Helm", link: "en/v0110/deployment/helm" },
