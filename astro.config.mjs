@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
-  site: `https://www.kontroler.com`,
+  site: `https://www.kontroler.dev`,
   output: "static",
   adapter: vercelStatic({
     analytics: true,
