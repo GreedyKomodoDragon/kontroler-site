@@ -144,7 +144,7 @@ Kontroler comes with a built-in dashboard that provides visualization and manage
 
 Now that you've deployed your first workflow, you can:
 
-1. Explore more complex workflow patterns with parallel execution and conditional branching
+1. Explore more complex workflow patterns with parallel execution
 2. Set up scheduled workflows using the cronjob feature
 3. Create reusable workflow templates
 4. Implement workspace sharing between tasks
