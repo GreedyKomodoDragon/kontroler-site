@@ -1,0 +1,197 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  url: string;
+  image?: { src: string; alt: string };
+}
+
+const { title, description, publishDate, url, image } = Astro.props;
+const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="blog-card">
+    {image && (
+        <a href={url} class="blog-image-link">
+            <div class="blog-image-container">
+                <img 
+                    src={image.src} 
+                    alt={image.alt} 
+                    class="blog-image"
+                />
+            </div>
+        </a>
+    )}
+    
+    <div class="blog-content">
+        <time class="blog-date">
+            {formattedDate}
+        </time>
+        
+        <h2 class="blog-title">
+            <a href={url} class="blog-title-link">
+                {title}
+            </a>
+        </h2>
+        
+        <p class="blog-excerpt">
+            {description}
+        </p>
+        
+        <div class="blog-read-more-container">
+            <a href={url} class="blog-read-more">
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" class="blog-read-more-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</article>
+
+<style>
+    .blog-card {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--theme-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--theme-divider);
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    
+    .blog-card:hover {
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+        background-color: var(--theme-bg-hover);
+    }
+    
+    .blog-image-link {
+        display: block;
+        overflow: hidden;
+    }
+    
+    .blog-image-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden;
+    }
+    
+    .blog-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .blog-image:hover {
+        transform: scale(1.05);
+    }
+    
+    .blog-content {
+        flex: 1;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .blog-date {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--theme-text-light);
+        margin-bottom: 0.5rem;
+    }
+    
+    .blog-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--theme-text);
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-top: 1rem !important;
+    }
+    
+    .blog-title-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    
+    .blog-title-link:hover {
+        color: var(--theme-text-accent);
+    }
+    
+    .blog-excerpt {
+        font-size: 1rem;
+        color: var(--theme-text-light);
+        margin-bottom: 1rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .blog-read-more-container {
+        margin-top: auto;
+        padding-top: 0.5rem;
+    }
+    
+    .blog-read-more {
+        color: var(--theme-text-accent);
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    
+    .blog-read-more:hover {
+        text-decoration: underline;
+    }
+    
+    .blog-read-more-icon {
+        height: 1rem;
+        width: 1rem;
+        margin-left: 0.25rem;
+    }
+    
+    /* Dark mode styles */
+    :global(.dark) .blog-card {
+        background-color: #1f2937;
+    }
+    
+    :global(.dark) .blog-date {
+        color: #818cf8;
+    }
+    
+    :global(.dark) .blog-title {
+        color: white;
+    }
+    
+    :global(.dark) .blog-title-link:hover {
+        color: #818cf8;
+    }
+    
+    :global(.dark) .blog-excerpt {
+        color: #d1d5db;
+    }
+    
+    :global(.dark) .blog-read-more {
+        color: #818cf8;
+    }
+</style>

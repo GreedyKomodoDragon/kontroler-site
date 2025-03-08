@@ -35,15 +35,14 @@ const version = getVersionFromURL(currentPage);
       </a>
     </div>
     
-   
+    <div class="nav-links">
+      <a href="/blogs" class="nav-link">Blogs</a>
+      <a href="/en/v0110/kontroler/introduction" class="nav-link">Documentation</a>
+    </div>
 
     {
-      currentPage != "/" ? (
+      (currentPage != "/" && !currentPage.startsWith("/blogs")) && (
         <VersionSelect version={convertVersionString(version)} client:idle />
-      ) :
-      ( <div class="nav-links">
-          <a href="/en/v0110/kontroler/introduction" class="nav-link">Documentation</a>
-        </div>
       )
     }
     

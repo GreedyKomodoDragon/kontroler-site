@@ -1,0 +1,163 @@
+---
+import { getCollection } from 'astro:content';
+import HeadCommon from '../../components/HeadCommon.astro';
+import Header from '../../components/Header/Header.astro';
+import HeadSEO from '../../components/HeadSEO.astro';
+
+// Get the slug from the URL
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// Get the blog post data
+const { entry, headings, ...data } = Astro.props;
+const { Content } = await entry.render();
+
+// For proper page metadata and navigation
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPage = Astro.url.pathname;
+---
+
+<html dir="ltr" lang="en" class="initial">
+  <head>
+    <HeadCommon />
+    <HeadSEO {...data} canonicalUrl={canonicalURL} />
+    <title>{entry.data.title} | Kontroler Blog</title>
+    <style>
+      .blog-container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 2rem 1rem 4rem;
+      }
+
+      .blog-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+
+      .blog-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--theme-text);
+        margin-bottom: 1rem;
+      }
+
+      .blog-meta {
+        color: var(--theme-text-light);
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+
+      .blog-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .blog-content {
+        color: var(--theme-text);
+        line-height: 1.7;
+      }
+
+      .blog-content :global(h1) {
+        font-size: 2.25rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .blog-content :global(h2) {
+        font-size: 1.75rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--theme-text);
+      }
+
+      .blog-content :global(h3) {
+        font-size: 1.5rem;
+        margin-top: 1.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .blog-content :global(p) {
+        margin-bottom: 1.25rem;
+      }
+
+      .blog-content :global(pre) {
+        background-color: var(--theme-code-bg);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      .blog-content :global(code) {
+        color: var(--theme-code-text);
+        font-family: var(--font-mono);
+      }
+
+      .blog-content :global(ul),
+      .blog-content :global(ol) {
+        margin-left: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .blog-content :global(li) {
+        margin-bottom: 0.5rem;
+      }
+
+      .blog-content :global(img) {
+        max-width: 100%;
+        border-radius: 0.25rem;
+      }
+
+      .blog-back {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: var(--theme-text-accent);
+        font-weight: 500;
+      }
+
+      .blog-back:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header currentPage={currentPage} />
+    <main>
+      <div class="blog-container">
+        <a href="/blogs" class="blog-back">← Back to all blogs</a>
+        
+        <div class="blog-header">
+          <h1 class="blog-title">{entry.data.title}</h1>
+          <div class="blog-meta">
+            Published on {new Date(entry.data.publishDate).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
+        </div>
+        
+        {entry.data.image && (
+          <img 
+            class="blog-image" 
+            src={entry.data.image.src} 
+            alt={entry.data.image.alt || entry.data.title} 
+          />
+        )}
+
+        <article class="blog-content">
+          <Content />
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
