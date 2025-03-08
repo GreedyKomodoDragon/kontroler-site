@@ -1,0 +1,135 @@
+---
+import { MarkdownHeading } from 'astro';
+import { CollectionEntry } from 'astro:content';
+import BlogCard from '../components/BlogCard.astro';
+import HeadCommon from '../components/HeadCommon.astro';
+import Header from '../components/Header/Header.astro';
+import HeadSEO from '../components/HeadSEO.astro';
+
+type Props = CollectionEntry<"docs">["data"] & {
+  headings: MarkdownHeading[];
+};
+
+const { headings, ...data } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPage = Astro.url.pathname;
+
+// Only include the actual blog posts we've created
+const actualPosts = [
+  {
+    title: "Getting Started with Kontroler",
+    description: "Learn how to set up your first workflow engine in Kubernetes using Kontroler. This guide covers installation, basic concepts, and your first workflow.",
+    publishDate: new Date("2025-03-08"),
+    slug: "getting-started",
+    image: {
+      src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/deployment.png",
+      alt: "Kubernetes and Kontroler logos"
+    }
+  },
+  {
+    title: "Advanced Workflow Patterns in Kontroler",
+    description: "Explore advanced patterns for managing complex workflows, including parallel execution, conditional branching, error handling strategies, and workspace sharing.",
+    publishDate: new Date("2025-03-08"),
+    slug: "advanced-patterns",
+    image: {
+        src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/advanced.jpg",
+      alt: "Complex workflow diagram"
+    }
+  },
+  {
+    title: "Kontroler CronJobs vs Kubernetes CronJobs",
+    description: "A detailed comparison between Kontroler's scheduling capabilities and native Kubernetes CronJobs, highlighting the advantages of workflow-based scheduling.",
+    publishDate: new Date("2025-03-08"),
+    slug: "cronjob-comparison",
+    image: {
+      src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/vsbots.png",
+      alt: "Comparison between Kontroler and Kubernetes scheduling"
+    }
+  }
+];
+
+// Sort posts by date (newest first)
+const sortedPosts = actualPosts.sort((a, b) => 
+  b.publishDate.getTime() - a.publishDate.getTime()
+);
+---
+
+<html dir="ltr" lang="en" class="initial">
+    <head>
+        <HeadCommon />
+        <HeadSEO {...data} canonicalUrl={canonicalURL} />
+        <title>Kontroler Blog</title>
+        <style>
+            .blogs-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 4rem 1rem;
+            }
+            
+            .blog-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .blog-title {
+                font-size: 2.5rem;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                color: var(--theme-text);
+            }
+            
+            .blog-description {
+                font-size: 1.25rem;
+                color: var(--theme-text-light);
+                max-width: 36rem;
+                margin: 1rem auto 0;
+            }
+            
+            .blog-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            @media (min-width: 768px) {
+                .blog-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            
+            @media (min-width: 1024px) {
+                .blog-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <Header currentPage={currentPage} />
+        <main class="blogs-main">
+            <div class="blogs-container">
+                <div class="blog-header">
+                    <h1 class="blog-title">
+                        Kontroler Blog
+                    </h1>
+                    <p class="blog-description">
+                        Discover the latest updates and insights about Kontroler
+                    </p>
+                </div>
+                
+                <div class="blog-grid">
+                    {sortedPosts.map((post) => (
+                        <BlogCard
+                            title={post.title}
+                            description={post.description}
+                            publishDate={post.publishDate}
+                            url={`/blogs/${post.slug}`}
+                            image={post.image}
+                        />
+                    ))}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
