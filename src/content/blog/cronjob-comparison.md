@@ -3,7 +3,7 @@ title: "Kontroler CronJobs vs Kubernetes CronJobs"
 description: "A detailed comparison between Kontroler's scheduling capabilities and native Kubernetes CronJobs, highlighting the advantages of workflow-based scheduling."
 publishDate: "2025-03-08"
 image:
-  src: "/public/vsbots.png"
+  src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/vsbots.png"
   alt: "Comparison between Kontroler and Kubernetes scheduling"
 ---
 

@@ -3,7 +3,7 @@ title: "Advanced Workflow Patterns in Kontroler"
 description: "Explore advanced patterns for managing complex workflows, including parallel execution, error handling strategies, and workspace sharing."
 publishDate: "2025-03-08"
 image:
-  src: "/public/advanced.jpg"
+  src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/advanced.jpg"
   alt: "Complex workflow diagram"
 ---
 

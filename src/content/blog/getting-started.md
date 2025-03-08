@@ -3,7 +3,7 @@ title: "Getting Started with Kontroler"
 description: "Learn how to set up your first workflow engine in Kubernetes using Kontroler. This guide covers installation, basic concepts, and your first workflow."
 publishDate: "2025-03-08"
 image:
-  src: "/public/deployment.png"
+  src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/deployment.png"
   alt: "Kubernetes and Kontroler logos"
 ---
 
