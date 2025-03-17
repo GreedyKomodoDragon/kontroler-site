@@ -3,7 +3,7 @@ title: "Reaching Our First Milestone: 10 GitHub Stars"
 description: "A personal reflection on the ups and downs of building Kontroler, from late-night debugging sessions to our first community milestone."
 publishDate: "2025-03-17"
 image:
-  src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/milestone.jpg"
+  src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/milestone.png"
   alt: "GitHub stars milestone celebration"
 ---
 
