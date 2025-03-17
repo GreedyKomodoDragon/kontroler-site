@@ -17,6 +17,16 @@ const currentPage = Astro.url.pathname;
 // Only include the actual blog posts we've created
 const actualPosts = [
   {
+    title: "Reaching Our First Milestone: 10 GitHub Stars",
+    description: "A reflection on Kontroler's journey to its first 10 GitHub stars, the challenges we faced, and lessons learned in building a Kubernetes-native workflow engine.",
+    publishDate: new Date("2025-03-17"),
+    slug: "first-milestone",
+    image: {
+      src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/milestone.jpg",
+      alt: "GitHub stars milestone celebration"
+    }
+  },
+  {
     title: "Getting Started with Kontroler",
     description: "Learn how to set up your first workflow engine in Kubernetes using Kontroler. This guide covers installation, basic concepts, and your first workflow.",
     publishDate: new Date("2025-03-08"),
