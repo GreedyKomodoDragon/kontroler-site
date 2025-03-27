@@ -30,6 +30,8 @@ const currentPage = Astro.url.pathname;
       description={entry.data.description}
       canonicalUrl={canonicalURL}
       image={entry.data.image}
+      publishDate={entry.data.publishDate}
+      author={entry.data.author || "Kontroler Team"}
       lang="en-us"
       dir="ltr"
     />
