@@ -25,7 +25,14 @@ const currentPage = Astro.url.pathname;
 <html dir="ltr" lang="en" class="initial">
   <head>
     <HeadCommon />
-    <HeadSEO {...data} canonicalUrl={canonicalURL} />
+    <HeadSEO
+      title={entry.data.title}
+      description={entry.data.description}
+      canonicalUrl={canonicalURL}
+      image={entry.data.image}
+      lang="en-us"
+      dir="ltr"
+    />
     <title>{entry.data.title} | Kontroler Blog</title>
     <style>
       .blog-container {
