@@ -67,7 +67,11 @@ const sortedPosts = actualPosts.sort((a, b) =>
 <html dir="ltr" lang="en" class="initial">
     <head>
         <HeadCommon />
-        <HeadSEO {...data} canonicalUrl={canonicalURL} />
+        <HeadSEO
+            {...data}
+            canonicalUrl={canonicalURL}
+            title="Blog"
+        />
         <title>Kontroler Blog</title>
         <style>
             .blogs-container {
