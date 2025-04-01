@@ -17,6 +17,16 @@ const currentPage = Astro.url.pathname;
 // Only include the actual blog posts we've created
 const actualPosts = [
   {
+    title: "What are Workflow Engines and Why You Need One",
+    description: "A comprehensive guide to workflow engines, their components, benefits, and how they can help you automate and orchestrate complex processes.",
+    publishDate: new Date("2025-04-01"),
+    slug: "understanding-workflow-engines",
+    image: {
+      src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/conductor.jpg",
+      alt: "Workflow engine diagram"
+    }
+  },
+  {
     title: "Reaching Our First Milestone: 10 GitHub Stars",
     description: "A reflection on Kontroler's journey to its first 10 GitHub stars, the challenges we faced, and lessons learned in building a Kubernetes-native workflow engine.",
     publishDate: new Date("2025-03-17"),
