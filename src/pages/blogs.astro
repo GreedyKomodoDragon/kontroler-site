@@ -17,6 +17,16 @@ const currentPage = Astro.url.pathname;
 // Only include the actual blog posts we've created
 const actualPosts = [
   {
+    title: "Kubernetes Jobs vs Kubernetes CronJobs",
+    description: "A detailed comparison between Kubernetes Jobs and CronJobs, highlighting their differences, use cases, and best practices for scheduling tasks in Kubernetes.",
+    publishDate: new Date("2025-04-20"),
+    slug: "kubernetes-jobs-vs-cronjobs",
+    image: {
+      src: "https://raw.githubusercontent.com/GreedyKomodoDragon/kontroler-site/refs/heads/main/images/comparing.png",
+      alt: "Kubernetes Jobs vs CronJobs"
+    }
+  },
+  {
     title: "What are Workflow Engines and Why You Need One",
     description: "A comprehensive guide to workflow engines, their components, benefits, and how they can help you automate and orchestrate complex processes.",
     publishDate: new Date("2025-04-01"),
